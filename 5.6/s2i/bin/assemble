@@ -48,6 +48,16 @@ if [ -f composer.json ]; then
   fi
 fi
 
+# Install node_modules and then gulp file
+echo "---> Check assets folder and gulp"
+if [ -d "./assets" ]; then
+  cd ./assets
+  echo "-->Link gulp modules then run guld command"
+  npm i
+  npm rebuild node-sass
+  gulp
+fi
+
 # post-assemble files
 process_extending_files ./php-post-assemble/ ${PHP_CONTAINER_SCRIPTS_PATH}/post-assemble/
 
