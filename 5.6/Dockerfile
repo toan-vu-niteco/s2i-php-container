@@ -70,6 +70,18 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 # Copy extra files to the image.
 COPY ./root/ /
 
+# Install node js and gulp
+RUN yum install -y gcc-c++ make
+RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
+RUN yum install -y nodejs
+RUN npm i gulp -g
+RUN npm i gulp-cli -g
+
+# Make directory for node modules and change owner
+RUN mkdir /.npm
+RUN chown -R 1001:1001 /.npm/
+RUN chown -R 1001:1001 /usr/lib/node_modules
+
 # Reset permissions of filesystem to default values
 RUN /usr/libexec/container-setup && rpm-file-permissions
 
