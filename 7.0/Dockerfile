@@ -71,6 +71,7 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 COPY ./root/ /
 
 # Install node js and gulp
+RUN yum remove -y rh-nodejs10-nodejs
 RUN yum install -y gcc-c++ make
 RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
 RUN yum install -y nodejs
