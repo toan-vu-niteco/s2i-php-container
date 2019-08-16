@@ -47,14 +47,15 @@ if [ -f composer.json ]; then
     echo -e "\nConsider adding a 'composer.lock' file into your source repository.\n"
   fi
 fi
-
 # Install node_modules and then gulp file
 echo "---> Check assets folder and gulp"
 if [ -d "./assets" ]; then
+  mkdir -p /.npm/logs
   cd ./assets
-  echo "-->Link gulp modules then run guld command"
+  echo "---->Install node_modules"
   npm i
-  npm rebuild node-sass
+  #npm rebuild node-sass --silent
+  echo "---->Run gulp command"
   gulp
 fi
 
